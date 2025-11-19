@@ -12,6 +12,8 @@ const objectAtribute = {
 }
 const listString = 'a,b,c,d,e,f,j';
 const convertToId = (data) => data.split(",").reverse().join("-")
+const attributeName ='href';
+const url = "https://www.facebook.com/minh.hieu.445041";
 </script>
 
 <template>
@@ -24,4 +26,7 @@ const convertToId = (data) => data.split(",").reverse().join("-")
   <!-- Ràng buộc nhiều thuộc tính động -->
   <span v-bind="objectAtribute">Ràng buộc động</span>
   <p>List string: {{ convertToId(listString)}}</p>
+
+  <!-- Directives (chỉ thị) -->
+  <a v-bind:[attributeName]= "url">Click</a>
 </template>
