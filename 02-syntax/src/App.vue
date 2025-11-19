@@ -10,6 +10,8 @@ const objectAtribute = {
     color: 'blue'
   }
 }
+const listString = 'a,b,c,d,e,f,j';
+const convertToId = (data) => data.split(",").reverse().join("-")
 </script>
 
 <template>
@@ -21,4 +23,5 @@ const objectAtribute = {
   <button :id="count" :disabled="isbuttonDisable">Bấm</button>
   <!-- Ràng buộc nhiều thuộc tính động -->
   <span v-bind="objectAtribute">Ràng buộc động</span>
+  <p>List string: {{ convertToId(listString)}}</p>
 </template>
