@@ -1,34 +1,18 @@
 <script setup>
-import { reactive, ref } from "vue";
-// const count = ref(0);
+import { nextTick, ref } from "vue";
 
-// const object = ref({
-//   count: 1,
-//   user: {
-//     age: 18,
-//   },
-//   array: [1, 2, 3],
-// });
-// const change = () => {
-//   object.value.count++
-// };
-
-// Nếu với mảng hay object nên dùng reactive thì không cần .value nữa
-
-const object = reactive({
-  count: 1,
-  user: {
-    age: 18,
-  },
-  array: [1, 2, 3],
-});
-const change = () => {
-  object.count++
+const count = ref(0);
+const increase = async () => {
+  count.value++
+  // nextTich: dùng để cập nhật DOM xong rồi mới chạy code tiếp theo 
+  // Dom trong vuejs thường gom hết sự thay đổi rồi mới thay đổi một thể
+  await nextTick()
+  console.log(document.getElementById('count').innerText);
+  
 };
-// const increase = () => count.value++;
 </script>
 <template>
-  <!-- Reactivity (Tính phản ứng) -->
-  <div>{{ object.count }}</div>
-  <button @click="change">Increase</button>
+  <h1>xon choa</h1>
+  <p id="count">{{ count }}</p>
+  <button @click="increase">Nút</button>
 </template>
