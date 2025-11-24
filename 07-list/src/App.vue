@@ -1,28 +1,32 @@
 <script setup>
-import { ref } from "vue";
+import { reactive, ref } from 'vue';
 
-const users = ref([
-  {
-    name: "John Doe",
-    age: 30,
-    isActive: true,
-  },
+const todoText = ref('');
+const todos = reactive([
+  { id: 1, text: 'Learn Vue.js', done: false },
+  { id: 2, text: 'Build a to-do app', done: false },
+  { id: 3, text: 'Master Vue Router', done: false },
 ]);
+
+const addToDo = () => {
+  if(todoText.value.trim() === '') return;
+  const newTodo = {
+    id: todos.length + 1,
+    text: todoText.value,
+    done: true
+  }
+  todos.push(newTodo);
+  todoText.value = '';
+}
+
 </script>
 <template>
+  <input type="text" v-model="todoText" placeholder="Add a new to-do" @keyup.enter="addToDo" />
+  <button @click="addToDo">Add todo</button>
+  <hr>
   <ul>
-    <!-- Khi sử dụng cả v-if và v-for phải bọc ngoài thẻ template("thẻ này không sinh thêm element") -->
-    <!-- Vì vuejs không chấp nhận đặt cả v-if và v-for trên cùng 1 thẻ html -->
-    <template v-for="(user, index) in users" :key="user.name">
-      <li v-if="user.isActive">{{ user.name }} ({{ index }})</li>
-    </template>
+    <li v-for="item in todos" :key="item.id">
+      {{ item.text }} - <strong>{{ item.done ? 'Done' : 'Not Done' }}</strong>
+    </li>
   </ul>
-
-  <!-- Tại sao sử dụng key -->
-  <!-- Key là duy nhất trong v-for giúp cho DOM theo dõi sự thay đổi của các phần tử   -->
-  <!-- Tối ưu hoá DOM -->
-  <!-- Quản lí hiệu xuất -->
-  <!-- Nếu không có key thì Vuejs sẽ sử dụng thuật toán tương đối để cập nhật phần tử,.... -->
-  
-
 </template>
