@@ -1,18 +1,28 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
-const ItemsShopping = ref([
-  { id: 1, name: "Apples", quantity: 5 },
-  { id: 2, name: "Bananas", quantity: 3 },
-  { id: 3, name: "Oranges", quantity: 4 },
+const users = ref([
+  {
+    name: "John Doe",
+    age: 30,
+    isActive: true,
+  },
 ]);
 </script>
 <template>
   <ul>
-    <li v-for="item in ItemsShopping" :key="item.id">
-      {{ item.name }} - Quantity: {{ item.quantity }}
-    </li>
+    <!-- Khi sử dụng cả v-if và v-for phải bọc ngoài thẻ template("thẻ này không sinh thêm element") -->
+    <!-- Vì vuejs không chấp nhận đặt cả v-if và v-for trên cùng 1 thẻ html -->
+    <template v-for="(user, index) in users" :key="user.name">
+      <li v-if="user.isActive">{{ user.name }} ({{ index }})</li>
+    </template>
   </ul>
-  <!-- Chạy từ 1 đến 10 -->
-  <span v-for="n in 10" :key="n">{{ n }}</span>
+
+  <!-- Tại sao sử dụng key -->
+  <!-- Key là duy nhất trong v-for giúp cho DOM theo dõi sự thay đổi của các phần tử   -->
+  <!-- Tối ưu hoá DOM -->
+  <!-- Quản lí hiệu xuất -->
+  <!-- Nếu không có key thì Vuejs sẽ sử dụng thuật toán tương đối để cập nhật phần tử,.... -->
+  
+
 </template>
