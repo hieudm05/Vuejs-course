@@ -1,20 +1,27 @@
 <script setup>
-import { ref } from 'vue';
-
-const count = ref(0);
-const greet = (event) => {
-  console.log(event.target);
-  alert(`Hello! Event type: ${event.type}`);
-}
-const sayHi = (name) => {
-  alert(`Hi ${name}`);
-}
-
+const sayHi1 = () => {
+  alert(`Hi 1`);
+};
+const sayHi2 = () => {
+  alert(`Hi 2`);
+};
+const handleSubmit = (event) => {
+  alert('Form submission prevented!');
+};
 </script>
 <template>
   <h2>Event handling</h2>
-  <p>Count: {{ count }}</p>
-  <button @click="count++">Tăng</button>
-  <button @click="greet">event</button>
-  <button @click="sayHi('Vue Learner')">Say Hi</button>
+    <!-- Sử dụng đối số event "stop" để ngăn chặn event của phần con không bị lan ra phần cha -->
+  <!-- <button @click="sayHi1">
+    <button @click.stop="sayHi2">Say Hi 2</button>
+    Say Hi 1
+  </button> -->
+  <!-- <form @submit.prevent.stop="handleSubmit">
+    <button type="submit">Submit</button>
+  </form> -->
+  <!-- "self" nó kiểm tra xem mình ấn vào sự kiện nào -->
+  <button @click="sayHi1">
+    <button @click.self="sayHi2">Say Hi 2</button>
+    Say Hi 1
+  </button>
 </template>
