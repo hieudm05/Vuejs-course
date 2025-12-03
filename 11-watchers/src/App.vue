@@ -1,28 +1,24 @@
 <script setup>
 import { ref, watch } from 'vue';
 
-const question = ref("")
-const isLoading = ref(false);
-const answer = ref("");
-
-watch(question, async (newValue, oldValue) => {
-  if(newValue.includes("?")) {
-    isLoading.value = true;
-    answer.value = "Đang suy nghĩ..."
-    try {
-      const res = await fetch("https://yesno.wtf/api");
-      answer.value = (await res.json()).answer
-    } catch (error) {
-      answer.value = error
-    }finally{
-      isLoading.value = false
-    }
-  }
+const x = ref(0);
+const y = ref(0);
+// Lưu í: wactch nó không theo dỗi được sự thay đổi của thuộc tính nhé,
+// Ví dụ như tuổi trong 1 reactive khi tăng nó không theo dỗi được, 
+// Nhưng nếu muốn theo dõi thì sử dụng getter () =>
+const Increment = () => {
+  x.value = Math.floor(Math.random() * 11);
+  y.value = Math.floor(Math.random() * x.value)
+}
+// watch(() => x.value + y.value, (sum) => {
+//   console.log(`Tổng ${sum}`);
+  
+// })
+watch([x, () => y.value+ 1], ([newX, newY]) => {
+  console.log(`New x ${newX} và New Y ${newY}`);
 })
 </script>
 <template>
- <h1>Watchers</h1>
- <p>Hỏi một câu hỏi có thể trả lời bằng "yes" hoặc "no"</p>
- <input v-model="question" :disabled="isLoading">
- <p>{{ answer }}</p>
+<p>{{ x }}, {{ y }}</p>
+<button @click="Increment">Increment</button>
 </template>
