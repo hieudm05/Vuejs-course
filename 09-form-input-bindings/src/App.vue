@@ -10,7 +10,11 @@ const selected = ref('');
 </script>
 <template>
   <h2>Form Input Bindings</h2>
-
+  <!-- Nếu mà muốn dữ liệu không được update luôn lên màn hình thì sẽ dùng cách modifier lazy -->
+  <!-- "number" sẽ convert dữ liệu sang kiểu number, nếu truyền vào không phải là number nó sẽ lấy giá trị gốc -->
+  <!-- "trim" -->
+    <p>Input Text {{ text }}</p>
+    <input type="text" v-model.trim="text" placeholder="Input your message" />
   <p>Text {{ mutilineText }}</p>
    <textarea v-model="mutilineText" placeholder="Input your message" />
 
