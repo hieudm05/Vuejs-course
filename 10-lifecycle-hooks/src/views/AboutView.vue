@@ -1,34 +1,24 @@
 <script setup>
-import { onMounted, onUnmounted, ref, onBeforeMount, onBeforeUnmount } from 'vue';
+import { ref, onBeforeUpdate, onUpdated } from 'vue';
 
-const time = ref(0);
-let intervalId = null
+const count = ref(0);
 
-onBeforeMount(() => {
-  console.log('on before mount');
+const increment = () => {
+  count.value++
+}
+onBeforeUpdate(() => {
+  // console.log("on before update");
+  console.log(document.getElementById('count').textContent);
 })
-onMounted(() => {
-  console.log("on mounted");
-  
- intervalId = setInterval(() => {
-  time.value++
- },1000)
-});
-
-onBeforeUnmount(() => {
-  console.log('on before unmount');
-})
-// Khi thoát khỏi trang này nó sẽ chạy hàm Unmounted
-onUnmounted(() => {
-  console.log("on Unmoutedf");
-  
-  clearInterval(intervalId)
+onUpdated(() => {
+  // console.log("on updated");
+    console.log("onUpdated",document.getElementById('count').textContent);
 })
 </script>
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    {{ time }}
+    <h1 id="count"> {{ count }}</h1>
+    <button @click="increment">increment</button>
   </div>
 </template>
 
