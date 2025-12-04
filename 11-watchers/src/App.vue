@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, watch } from 'vue';
+import { reactive, watch, watchEffect } from 'vue';
 
 const user = reactive({
   age: 18,
@@ -25,6 +25,14 @@ watch(user, (newUser) => {
   console.log("data", JSON.stringify(newUser));
   
 },{immediate: true})
+
+// watchEffect: Không có biến chỉ định
+// Tự động chạy khi load
+// Tự động theo dõi mọi biến đổi mà reactive đang dùng
+watchEffect(() => {
+  console.log("user",JSON.stringify(user));
+  
+})
 </script>
 <template>
 <button @click="changeAge">Change</button>
