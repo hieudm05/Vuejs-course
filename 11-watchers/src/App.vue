@@ -1,24 +1,31 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { reactive, watch } from 'vue';
 
-const x = ref(0);
-const y = ref(0);
-// Lưu í: wactch nó không theo dỗi được sự thay đổi của thuộc tính nhé,
-// Ví dụ như tuổi trong 1 reactive khi tăng nó không theo dỗi được, 
-// Nhưng nếu muốn theo dõi thì sử dụng getter () =>
-const Increment = () => {
-  x.value = Math.floor(Math.random() * 11);
-  y.value = Math.floor(Math.random() * x.value)
-}
-// watch(() => x.value + y.value, (sum) => {
-//   console.log(`Tổng ${sum}`);
-  
-// })
-watch([x, () => y.value+ 1], ([newX, newY]) => {
-  console.log(`New x ${newX} và New Y ${newY}`);
+const user = reactive({
+  age: 18,
+  class:{
+    student: 0,
+    name: "A"
+  }
 })
+
+const changeAge = () => {
+  user.class.student++;
+}
+
+// Mặc định deep:true nó sẽ theo dõi sâu vào obj,
+// Trường hợp deep:false nó chỉ theo dõi được tầng đầu tiên thôi
+// watch(user, (newUser) => {
+//   console.log("data", JSON.stringify(newUser));
+  
+// },{deep: true})
+
+// immediate: chạy khi bắt đầu load vào trang, và chạy khi thay đổi data
+watch(user, (newUser) => {
+  console.log("data", JSON.stringify(newUser));
+  
+},{immediate: true})
 </script>
 <template>
-<p>{{ x }}, {{ y }}</p>
-<button @click="Increment">Increment</button>
+<button @click="changeAge">Change</button>
 </template>
