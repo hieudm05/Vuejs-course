@@ -1,6 +1,10 @@
 <script setup>
-import ButtonCount from './components/ButtonCount.vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { ref } from "vue";
+import ButtonCount from "./components/ButtonCount.vue";
+import HelloWorld from "./components/HelloWorld.vue";
+import ChildrenComponent from "./components/ChildrenComponent.vue";
+const stringNew = ref("đã thêm");
+const sayHi = () => console.log("Say hi");
 
 </script>
 
@@ -9,9 +13,22 @@ import HelloWorld from './components/HelloWorld.vue';
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-  <hello-world test="Xin lỗi mẹ mày"/>
-  <button-count :init= "2"/>
-  <router-view/>
+  <!-- <hello-world greetingMessage="Xin lỗi mẹ mày"/> -->
+  <!-- Hoặc -->
+  <hello-world :greeting-message="stringNew" />
+  <!-- Khi mà sử dụng binding thì nó sẽ truyền đúng biểu thức xuống là number chứ không phải String nữa -->
+  <button-count :init="2" />
+  <children-component
+    :prop-a="1"
+    :prop-d="123"
+    :prop-e="{
+      message: 'Thông báo',
+    }"
+    :prop-f="test"
+    :prop-g="sayHi"
+    :disable="true"
+  />
+  <router-view />
 </template>
 
 <style>
@@ -22,7 +39,6 @@ import HelloWorld from './components/HelloWorld.vue';
   text-align: center;
   color: #2c3e50;
 }
-
 nav {
   padding: 30px;
 }

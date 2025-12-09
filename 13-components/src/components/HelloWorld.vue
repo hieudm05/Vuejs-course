@@ -1,13 +1,14 @@
 <script setup>
   const props = defineProps({
-    test: String
+    // Nên khai báo tên props theo kiểu camelCase
+    greetingMessage: String
   });
   console.log(props);
   // Sử dụng props như là 1 giá trị mặc định
 </script>
 <template>
   <div class="hello">
-    <h1>{{ test }}</h1>
+    <h1>{{ greetingMessage }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
