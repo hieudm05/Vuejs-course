@@ -19,10 +19,15 @@ import { nextTick, onMounted, ref } from 'vue';
     })
   });
 });
+const inititallizeThirdPartyLibraries = (el) => {
+  console.log(el);
+}
 </script>
 <template>
-  <h1>Refs với v-for</h1>
-  <ul>
-  <li v-for="(value, index) in list"  :key="index" ref="itemsList" style="opacity: 0"> {{ value }}</li>
-  </ul>
+  <h1>Refs kiểu hàm</h1>
+  <input type="text" 
+      :ref="(el) => {
+        inititallizeThirdPartyLibraries(el)
+      }"
+    />
 </template>
