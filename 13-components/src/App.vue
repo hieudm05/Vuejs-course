@@ -9,9 +9,9 @@ const increaseBy = (number1, number2) => {
   count.value = count.value + number1 + number2
 }
 const email = ref("")
+const username = ref("")
 watchEffect(() => {
   console.log(email.value);
-  
 })
 
 </script>
@@ -23,7 +23,7 @@ watchEffect(() => {
   </nav>
   <!-- <hello-world :greeting-message="count" /> -->
   <!-- <button-count @increase="count++" @increaseByTwoTimes="count+=2" @increaseBy="increaseBy" /> -->
-  <component-vmodel v-model="email"/>
+  <component-vmodel v-model:email="email" v-model:username="username"/>
   <router-view />
 </template>
 
