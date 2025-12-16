@@ -1,7 +1,7 @@
 <script setup>
   const props = defineProps({
     // Nên khai báo tên props theo kiểu camelCase
-    greetingMessage: String
+    greetingMessage: Number
   });
   console.log(props);
   // Sử dụng props như là 1 giá trị mặc định

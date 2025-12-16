@@ -21,8 +21,10 @@ watchEffect(() => {
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-  <!-- <hello-world :greeting-message="count" /> -->
-  <!-- <button-count @increase="count++" @increaseByTwoTimes="count+=2" @increaseBy="increaseBy" /> -->
+  <hello-world :greeting-message="count" />
+  <button-count @increase="count++" @increaseByTwoTimes="count+=2" @increaseBy="increaseBy">
+  <template #increase>Test slot</template>
+  </button-count>
   <component-vmodel v-model:email="email" v-model:username.capitalize="username"/>
   <router-view />
 </template>

@@ -11,7 +11,7 @@ const callFunctionIncreaseBy = () => {
 }
 </script>
 <template>
-    <button @click="callFunctionIncrease">Increase</button>
+    <button @click="callFunctionIncrease"><slot name="increase">Default button</slot></button>
     <button @click="callFunctionIncreaseByTwoTimes">Increase By Two Times</button>
     <button @click="callFunctionIncreaseBy">Increase By</button>
 </template>
