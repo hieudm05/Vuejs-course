@@ -1,12 +1,18 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import ButtonCount from "./components/ButtonCount.vue";
 import HelloWorld from "./components/HelloWorld.vue";
+import ComponentVmodel from "./components/ComponentVmodel.vue";
 const stringNew = ref("đã thêm");
 const count = ref(0);
 const increaseBy = (number1, number2) => {
   count.value = count.value + number1 + number2
 }
+const email = ref("")
+watchEffect(() => {
+  console.log(email.value);
+  
+})
 
 </script>
 
@@ -15,9 +21,9 @@ const increaseBy = (number1, number2) => {
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-  <hello-world :greeting-message="count" />
-  <button-count @increase="count++" @increaseByTwoTimes="count+=2" @increaseBy="increaseBy" />
-
+  <!-- <hello-world :greeting-message="count" /> -->
+  <!-- <button-count @increase="count++" @increaseByTwoTimes="count+=2" @increaseBy="increaseBy" /> -->
+  <component-vmodel v-model="email"/>
   <router-view />
 </template>
 
