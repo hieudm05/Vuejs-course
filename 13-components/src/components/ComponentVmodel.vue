@@ -15,7 +15,16 @@
 </template>
 <script setup>
     const email = defineModel("email")
-    const username = defineModel("username")
+    const [username, modifiners] = defineModel("username",{
+       set(value){
+        if(modifiners.capitalize){
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        }
+        return value
+       }
+    })
+    console.log(modifiners);
+    
     const setEmailDefault = () => {
         email.value = "hieudubai.@gmail.com"
     }

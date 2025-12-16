@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watchEffect } from "vue";
+import { capitalize, ref, watchEffect } from "vue";
 import ButtonCount from "./components/ButtonCount.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import ComponentVmodel from "./components/ComponentVmodel.vue";
@@ -23,7 +23,7 @@ watchEffect(() => {
   </nav>
   <!-- <hello-world :greeting-message="count" /> -->
   <!-- <button-count @increase="count++" @increaseByTwoTimes="count+=2" @increaseBy="increaseBy" /> -->
-  <component-vmodel v-model:email="email" v-model:username="username"/>
+  <component-vmodel v-model:email="email" v-model:username.capitalize="username"/>
   <router-view />
 </template>
 
