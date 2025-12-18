@@ -1,8 +1,10 @@
 <script setup>
-import { capitalize, provide, readonly, ref, watchEffect } from "vue";
+import { capitalize, defineAsyncComponent, provide, readonly, ref, watchEffect } from "vue";
 import ButtonCount from "./components/ButtonCount.vue";
 import HelloWorld from "./components/HelloWorld.vue";
-import ComponentVmodel from "./components/ComponentVmodel.vue";
+import LoadingComponent from "./components/LoadingComponent.vue";
+import ErrorComponent from "./components/ErrorComponent.vue";
+// import ComponentVmodel from "./components/ComponentVmodel.vue";
 const stringNew = ref("đã thêm");
 const count = ref(0);
 const increaseBy = (number1, number2) => {
@@ -14,6 +16,11 @@ const currentLocal = ref("VN");
 const updateCurrentLocal = () => {
   currentLocal.value = "EN"
 }
+const ComponentVmodel = defineAsyncComponent(() =>{
+  loader: () => import('./components/ComponentVmodel.vue')
+  LoadingComponent: LoadingComponent
+  ErrorComponent: ErrorComponent
+})
 provide('local',{
   // local: currentLocal,
   // Nếu không muốn người dùng update thì chọn 'readonly'
