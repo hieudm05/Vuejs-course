@@ -1,5 +1,5 @@
 <script setup>
-import { capitalize, ref, watchEffect } from "vue";
+import { capitalize, provide, ref, watchEffect } from "vue";
 import ButtonCount from "./components/ButtonCount.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import ComponentVmodel from "./components/ComponentVmodel.vue";
@@ -10,6 +10,7 @@ const increaseBy = (number1, number2) => {
 }
 const email = ref("")
 const username = ref("")
+provide('local','Vn no1')
 watchEffect(() => {
   console.log(email.value);
 })

@@ -1,4 +1,6 @@
 <script setup>
+import { inject } from 'vue';
+const local = inject('local')
   const props = defineProps({
     // Nên khai báo tên props theo kiểu camelCase
     greetingMessage: Number
@@ -9,6 +11,7 @@
 <template>
   <div class="hello">
     <h1>{{ greetingMessage }}</h1>
+    <p>Trang hello: {{local}}</p>
   </div>
 </template>
 
