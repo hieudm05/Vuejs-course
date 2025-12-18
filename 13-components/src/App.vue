@@ -1,5 +1,5 @@
 <script setup>
-import { capitalize, provide, ref, watchEffect } from "vue";
+import { capitalize, provide, readonly, ref, watchEffect } from "vue";
 import ButtonCount from "./components/ButtonCount.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import ComponentVmodel from "./components/ComponentVmodel.vue";
@@ -10,7 +10,16 @@ const increaseBy = (number1, number2) => {
 }
 const email = ref("")
 const username = ref("")
-provide('local','Vn no1')
+const currentLocal = ref("VN");
+const updateCurrentLocal = () => {
+  currentLocal.value = "EN"
+}
+provide('local',{
+  // local: currentLocal,
+  // Nếu không muốn người dùng update thì chọn 'readonly'
+  local: readonly(currentLocal),
+  updateLocal: updateCurrentLocal
+})
 watchEffect(() => {
   console.log(email.value);
 })

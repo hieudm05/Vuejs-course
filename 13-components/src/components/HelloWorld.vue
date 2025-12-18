@@ -1,17 +1,23 @@
 <script setup>
-import { inject } from 'vue';
-const local = inject('local')
+import { inject, ref } from 'vue';
+const injected = inject('local',{
+  local: ref('JAV'),
+  updateLocal: () => {}
+})
+const {local, updateLocal} = injected
   const props = defineProps({
     // Nên khai báo tên props theo kiểu camelCase
     greetingMessage: Number
   });
-  console.log(props);
+  
+  // console.log(props);
   // Sử dụng props như là 1 giá trị mặc định
 </script>
 <template>
   <div class="hello">
     <h1>{{ greetingMessage }}</h1>
     <p>Trang hello: {{local}}</p>
+    <button @click="updateLocal">Update date local</button>
   </div>
 </template>
 
